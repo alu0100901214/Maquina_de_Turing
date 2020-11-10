@@ -22,7 +22,14 @@ public class mainTuring {
 		System.out.println("Introduzca la cadena para la cinta de entrada: ");
 		String cad = sc.nextLine();
 		
-		t.maquinaTuring(cad);
+		boolean b;
+		b = t.maquinaTuring(cad);
+		
+		if(b)
+			System.out.println("Cadena aceptada.");
+		else
+			System.out.println("Cadena rechazada.");
+		
 		sc.close();
 	}
 

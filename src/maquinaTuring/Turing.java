@@ -23,9 +23,9 @@ public class Turing {
 	
 	String estadoActual_;
 	String simboloBlanco_;
-	int cabeza_;
+	int cabeza_ = 0;
 	
-	LinkedList<String> cinta_ = new LinkedList();
+	LinkedList<String> cinta_ = new LinkedList<String>();
 	
 	public Turing(File archive) throws IOException{
 		
@@ -85,7 +85,7 @@ public class Turing {
 	}
 	
 	
-	public void maquinaTuring(String cadena) {
+	public boolean maquinaTuring(String cadena) {
 		boolean transita = true;
 		
 		for (int i = 0; i < cadena.length(); i++) {
@@ -96,10 +96,43 @@ public class Turing {
 			transita = false;
 			
 			for (int i = 0; i < conjuntoEstados_.size(); i++) {
+				if( estadoActual_.equals(conjuntoEstados_.get(i).getEstado()) ) {
+					for (int j = 0; j < conjuntoEstados_.get(i).getConjuntoTransicionesSize(); j++) {
+						if(!transita) {
+							if(cinta_.get(cabeza_).equals(conjuntoEstados_.get(i).getTransicion(j).getSimboloLectura())) {
+								transita = true;
+								
+								cinta_.set(cabeza_, conjuntoEstados_.get(i).getTransicion(j).getSimboloEscritura());
+								estadoActual_ = conjuntoEstados_.get(i).getTransicion(j).getEstadoSiguiente();
+	
+								if( "R".equals(conjuntoEstados_.get(i).getTransicion(j).getMovimiento()) ) {
+									if(cabeza_ >= (cinta_.size()-1)) {
+										cinta_.addLast(simboloBlanco_);
+										cabeza_++;
+									}else
+										cabeza_++;
+										
+								}else if( "L".equals(conjuntoEstados_.get(i).getTransicion(j).getMovimiento()) ) {
+									if(cabeza_ <= 0) {
+										cinta_.addFirst(simboloBlanco_);
+										cabeza_--;
+									}else
+										cabeza_--;
+								}
+							}
+						}
+					}
+				}
 				
 			}
 		}
 		
+		for (int i = 0; i < estadosFinales_.size(); i++) {
+			if(estadoActual_.equals(estadosFinales_.get(i)))
+				return true;
+		}
+		
+		return false;
 	}
 	
 	
