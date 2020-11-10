@@ -6,7 +6,6 @@ package maquinaTuring;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
@@ -27,7 +26,7 @@ public class Turing {
 	
 	LinkedList<String> cinta_ = new LinkedList<String>();
 	
-	public Turing(File archive) throws IOException{
+	public Turing(File archive) throws Exception{
 		
 		FileReader fr = new FileReader(archive);
 		BufferedReader br = new BufferedReader(fr);
@@ -35,6 +34,7 @@ public class Turing {
 		String cad;
 		String[] vect;
 		Estado e;
+		boolean check = true;
 		
 		while ((cad = br.readLine()) != null) {
 			cad.trim();
@@ -69,6 +69,29 @@ public class Turing {
 				
 				while ((cad = br.readLine()) != null) {
 					vect = cad.split(" ");
+					
+					// Control de errores
+					if (!estaEnConjuntoEstados(vect[0]))
+						check = false;
+					
+					if (!estaEnAlfabeto(vect[1]))
+						check = false;
+					
+					if (!estaEnConjuntoEstados(vect[2]))
+						check = false;
+					
+					if (!estaEnAlfabetoCinta(vect[3]))
+						check = false;
+					
+					if (!movimientoValido(vect[4]))
+						check = false;
+					
+					if (!check) {
+						br.close();
+						throw new Exception("Error en el fichero, existe algun carácter que no "
+								+ "pertenece al alfabeto o algún estado que no pertenece al "
+								+ "conjunto de estados.");
+					}
 					
 					for (int j = 0; j < conjuntoEstados_.size(); j++) {
 						if (conjuntoEstados_.get(j).getEstado().equals(vect[0]))
@@ -135,6 +158,45 @@ public class Turing {
 		return false;
 	}
 	
+	private boolean estaEnConjuntoEstados(String v) {
+		for (int i = 0; i < conjuntoEstados_.size(); i++) {
+			if (v.equals(conjuntoEstados_.get(i).getEstado()))
+				return true;
+		}
+		return false;
+	}
+	
+	private boolean estaEnAlfabeto(String v) {
+		for (int i = 0; i < alfabeto_.size(); i++) {
+			if (v.equals(alfabeto_.get(i)))
+				return true;
+		}
+		
+		if(v.equals(simboloBlanco_))
+			return true;
+		
+		
+		return false;
+	}
+	
+	private boolean estaEnAlfabetoCinta(String v) {
+		for (int i = 0; i < alfabetoCinta_.size(); i++) {
+			if (v.equals(alfabetoCinta_.get(i)))
+				return true;
+		}
+		return false;
+	}
+	
+	private boolean movimientoValido(String v) {
+		if(v.equals("R"))
+			return true;
+		else if(v.equals("L"))
+			return true;
+		else if(v.equals("S"))
+			return true;
+		
+		return false;
+	}
 	
 	public String toString() {
 		String cad = "";

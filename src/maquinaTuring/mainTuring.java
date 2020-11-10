@@ -1,7 +1,6 @@
 package maquinaTuring;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.Scanner;
 
 /**
@@ -11,7 +10,7 @@ import java.util.Scanner;
 
 public class mainTuring {
 
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) throws Exception {
 		// TODO Auto-generated method stub
 		File archive = new File(args[0]);
 		Scanner sc = new Scanner(System.in);
