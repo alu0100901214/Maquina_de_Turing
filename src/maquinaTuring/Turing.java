@@ -82,4 +82,29 @@ public class Turing {
 		
 		br.close();
 	}
+	
+	public String toString() {
+		String cad = "";
+		for (int i = 0; i < alfabeto_.size(); i++) {
+			cad += alfabeto_.get(i) + " ";
+		}
+		cad += "\n";
+		
+		for (int i = 0; i < alfabetoCinta_.size(); i++) {
+			cad += alfabetoCinta_.get(i) + " ";
+		}
+		cad += "\n";
+		
+		for (int i = 0; i < estadosFinales_.size(); i++) {
+			cad += estadosFinales_.get(i) + " ";
+		}
+		cad += "\n";
+		
+		for (int i = 0; i < conjuntoEstados_.size(); i++) {
+			cad += conjuntoEstados_.get(i).toString();
+		}
+		cad += "\n";
+		
+		return cad;
+	}
 }

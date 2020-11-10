@@ -15,6 +15,7 @@ public class mainTuring {
 		File archive = new File(args[0]);
 		
 		Turing t = new Turing(archive);
+		System.out.println(t);
 	}
 
 }

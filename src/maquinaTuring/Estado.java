@@ -30,4 +30,12 @@ public class Estado {
 	public Estado() {}
 	
 	
+	public String toString() {
+		String cad = "";
+		cad += estado_ + ": \n";
+		for (int i = 0; i < conjuntoTransiciones_.size(); i++) {
+			cad += estado_ + " " + conjuntoTransiciones_.get(i).toString();
+		}
+		return cad;
+	}
 }

@@ -21,4 +21,9 @@ public class Transicion {
 			movimiento_ = movimiento;
 	}
 
+	public String toString() {
+		String cad = "";
+		cad += simboloLectura_ + " " + estadoSiguiente_ + " " + simboloEscritura_ + " " + movimiento_ + "\n";
+		return cad;
+	}
 }
