@@ -1,0 +1,12 @@
+# Ejemplo 3
+# MT que reciba como parametro una cadena binaria y elimine los ceros de la palabra
+# dejando Unicamente la secuencia de unos sin espacios en blanco
+q0 q1
+0 1
+0 1 .
+q0
+.
+q1
+q0 0 q0 . R
+q0 1 q0 1 R
+q0 . q1 . R

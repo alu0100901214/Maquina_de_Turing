@@ -149,6 +149,7 @@ public class Turing {
 				
 			}
 		}
+		System.out.println("Cadena resultante: " + cinta_);
 		
 		for (int i = 0; i < estadosFinales_.size(); i++) {
 			if(estadoActual_.equals(estadosFinales_.get(i)))
@@ -156,6 +157,7 @@ public class Turing {
 		}
 		
 		return false;
+		
 	}
 	
 	private boolean estaEnConjuntoEstados(String v) {
