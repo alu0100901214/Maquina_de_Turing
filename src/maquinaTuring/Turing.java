@@ -8,7 +8,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-
+import java.util.LinkedList;
 
 /**
  * @author Sergio González Guerra
@@ -25,6 +25,7 @@ public class Turing {
 	String simboloBlanco_;
 	int cabeza_;
 	
+	LinkedList<String> cinta_ = new LinkedList();
 	
 	public Turing(File archive) throws IOException{
 		
@@ -82,6 +83,25 @@ public class Turing {
 		
 		br.close();
 	}
+	
+	
+	public void maquinaTuring(String cadena) {
+		boolean transita = true;
+		
+		for (int i = 0; i < cadena.length(); i++) {
+			cinta_.addLast(String.valueOf(cadena.charAt(i)));
+		}
+		
+		while(transita) {
+			transita = false;
+			
+			for (int i = 0; i < conjuntoEstados_.size(); i++) {
+				
+			}
+		}
+		
+	}
+	
 	
 	public String toString() {
 		String cad = "";
